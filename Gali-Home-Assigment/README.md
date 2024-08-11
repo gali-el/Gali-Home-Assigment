@@ -12,7 +12,17 @@ This is my solution for the home assigment exercise, a Playwright tests written 
 4. Create .env file at the project root directory and set your-username & your-password \
    USERNAME=your-username \
    PASSWORD=your-password
-5. At **GaliHomeAssigment.spec.ts** row 20, set the path of the file on you local computer.
+5. At **GaliHomeAssigment.spec.ts** row 20, set the file's path on your local computer.
+6. To see html report: \
+   Run `npm install playwright-html-reporter` \
+ and insert the following in your **playwright.config.ts** \
+  `reporter: [
+    ['list'],
+    ['playwright-html-reporter', {
+      outputFolder: 'playwright-report',
+      open: 'always'
+    }]
+  ],`
 
 ## Test execution
 From your project root directory run: `npx playwright test`

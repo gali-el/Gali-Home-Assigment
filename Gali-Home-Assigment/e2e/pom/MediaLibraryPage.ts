@@ -1,7 +1,7 @@
 import { Page} from '@playwright/test';
 import {Locator} from "playwright";
 
-const ML_PRODUCT_SELECTOR = '//*[@data-test="link-button" and @id="digital_asset_management"]';
+const ML_PRODUCT_SELECTOR = '//*[@data-test="link-button" and @id="cloudinary_assets"]';
 const ASSETS_TAB_SELECTOR = '//*[@data-test="tab-mediaLibraryAssets"]';
 const UPLOAD_SELECTOR = '//button[@data-test="upload-btn"]';
 const OPEN_BUTTON_SELECTOR = '//*[@data-test="action-manage-btn"]';

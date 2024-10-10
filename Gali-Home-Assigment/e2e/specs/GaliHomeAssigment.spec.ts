@@ -1,15 +1,13 @@
-import { test, expect } from '@playwright/test';
-import { chromium } from 'playwright';
+import {test, expect} from '@playwright/test';
 import {LoginPage} from "../pom/LoginPage";
 import {MediaLibraryPage} from "../pom/MediaLibraryPage";
-import {generateRandomString, UploadWidgetPage} from "../pom/UploadWidgetPage";
+import {UploadWidgetPage} from "../pom/UploadWidgetPage";
 import {AssetPage} from "../pom/AssetPage";
+import {generateRandomString} from "../utils/GenerateRandomStringUtil";
 
 
-test('Gali Home Assigment', async () => {
-    //Start chromium browser
-    const browser = await chromium.launch({ headless: false });
-    const page = await browser.newPage();
+
+test('Gali Home Assigment', async ({page}) => {
     const loginPage = new LoginPage(page);
     const mediaLibraryPage = new MediaLibraryPage(page);
     const uploadWidgetPage = new UploadWidgetPage(page);
@@ -17,14 +15,14 @@ test('Gali Home Assigment', async () => {
     const assetPage = new AssetPage(page);
     const username = process.env.USERNAME as string;
     const password = process.env.PASSWORD as string;
-    const myFile = '/Users/galiel/Documents/Gali/asset/1.jpeg'
+    const myFile =  './e2e/media/asset.png'
 
     await test.step('Navigate to Login page', async () => {
         await page.goto('https://staging.cloudinary.com/users/login')
     })
 
-    await test.step('Fill user name and password and click Login', async () => {
-        await loginPage.fillCredentials(username, password);
+    await test.step('Go to Login page, fill user name and password and click Login', async () => {
+        await loginPage.fillCredentials(username, password, page);
     })
 
     await test.step('Goto ML Assets tab', async () => {
@@ -51,8 +49,7 @@ test('Gali Home Assigment', async () => {
         await expect(assetPage.assetTitle).toHaveText(newPublicId);
     })
 
-    // Close the browser
-    await browser.close();
+
 })
 
 

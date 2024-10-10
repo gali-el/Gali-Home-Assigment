@@ -22,7 +22,8 @@ export class LoginPage {
     }
 
     // Fill in the username and password fields
-    async fillCredentials(username: string, password: string) {
+    async fillCredentials(username: string, password: string, page: Page) {
+        await page.goto('https://staging.cloudinary.com/users/login');
         await this.email.fill(username);
         await this.password.fill(password);
         await this.loginButton.click();
